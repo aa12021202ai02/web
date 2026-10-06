@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鍾皓軒 Howard Chung | AI 轉型顧問 & 行銷資料科學專家 (TMR 臺灣行銷研究)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            dark: '#0f172a',
+                            navy: '#1e293b'
+                        },
+                        accent: {
+                            500: '#10b981',
+                            600: '#059669'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .dark .glass-panel {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #0d9488 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-grid-pattern {
+            background-size: 30px 30px;
+            background-image: linear-gradient(to right, rgba(226, 232, 240, 0.4) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(226, 232, 240, 0.4) 1px, transparent 1px);
+        }
+        .dark .bg-grid-pattern {
+            background-image: linear-gradient(to right, rgba(51, 65, 85, 0.2) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(51, 65, 85, 0.2) 1px, transparent 1px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 glass-panel transition-all duration-300 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" onclick="switchTab('home')" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform">
+                    HC
+                </div>
+                <div>
+                    <span class="text-lg font-bold tracking-tight text-slate-900 dark:text-white block leading-tight">鍾皓軒 <span class="text-xs font-medium text-sky-600 dark:text-sky-400">Howard Chung</span></span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400 block">TMR 臺灣行銷研究創辦人</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100 dark:hover:bg-slate-800">首頁</button>
+                <button onclick="switchTab('about')" id="nav-about" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100 dark:hover:bg-slate-800">關於我</button>
+                <button onclick="switchTab('services')" id="nav-services" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100 dark:hover:bg-slate-800">AI 解決方案</button>
+                <button onclick="switchTab('portfolio')" id="nav-portfolio" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100 dark:hover:bg-slate-800">案例作品集</button>
+                <button onclick="switchTab('blog')" id="nav-blog" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100 dark:hover:bg-slate-800">技術觀點</button>
+                <button onclick="switchTab('contact')" id="nav-contact" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100 dark:hover:bg-slate-800">聯絡我</button>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="hidden sm:flex items-center gap-3">
+                <button onclick="switchTab('contact')" class="bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white font-medium px-5 py-2.5 rounded-xl shadow-lg shadow-sky-500/20 text-sm transition-all hover:shadow-sky-500/30 flex items-center gap-2">
+                    <i class="fa-solid font-sm fa-calendar-check"></i>
+                    <span>預約 1-on-1 諮詢</span>
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-700 dark:text-slate-300 hover:text-sky-600 p-2 text-xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-2">
+            <button onclick="switchTab('home')" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">首頁</button>
+            <button onclick="switchTab('about')" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">關於我</button>
+            <button onclick="switchTab('services')" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">AI 解決方案與服務</button>
+            <button onclick="switchTab('portfolio')" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">案例與作品集</button>
+            <button onclick="switchTab('blog')" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">技術觀點與文章</button>
+            <button onclick="switchTab('contact')" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">聯絡我 / 預約諮詢</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow">
+
+        <!-- ==================== PAGE 1.0: HOME ==================== -->
+        <section id="page-home" class="page-content">
+            <!-- Hero Section -->
+            <div class="relative overflow-hidden bg-grid-pattern pt-12 pb-20 md:pt-20 md:pb-28">
+                <div class="absolute -top-40 -right-40 w-96 h-96 bg-sky-400/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 text-sky-700 dark:text-sky-300 text-xs font-semibold tracking-wide">
+                                <span class="flex h-2 w-2 rounded-full bg-sky-500 animate-ping"></span>
+                                企業 AI 轉型與行銷資料科學專家
+                            </div>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                                幫企業將 <span class="text-gradient">AI 與數據</span><br>
+                                轉化為可衡量的商業成長
+                            </h1>
+                            <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                                我是 <strong>鍾皓軒 Howard</strong>（TMR 臺灣行銷研究創辦人）。擁有 8 年產業實戰與教學經驗，專注於 AI 客製化開發、企業內部私有知識庫（RAG）、工作流自動化與團隊賦能培訓。
+                            </p>
+
+                            <!-- CTA Button Cluster -->
+                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                                <button onclick="switchTab('contact')" class="w-full sm:w-auto bg-sky-600 hover:bg-sky-500 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-sky-500/25 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-3">
+                                    <span>免費預約 15 分鐘顧問對齊</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                                <button onclick="switchTab('services')" class="w-full sm:w-auto bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-medium px-7 py-4 rounded-xl transition-all flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-cubes text-sky-500"></i>
+                                    <span>探索 AI 解決方案矩陣</span>
+                                </button>
+                            </div>
+
+                            <!-- Highlights Metrics Bar -->
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-slate-200 dark:border-slate-800">
+                                <div>
+                                    <div class="text-2xl font-bold text-slate-900 dark:text-white">8+ 年</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">數據與 AI 實戰經驗</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-slate-900 dark:text-white">50+ 家</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">跨國與知名企業顧問</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-slate-900 dark:text-white">100+ 場</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">企業內訓與工作坊</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-slate-900 dark:text-white">10,000+</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">學員培訓人次</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hero Interactive Card / Profile Preview -->
+                        <div class="lg:col-span-5 flex justify-center">
+                            <div class="relative w-full max-w-md">
+                                <div class="absolute inset-0 bg-gradient-to-r from-sky-500 to-indigo-600 rounded-3xl transform rotate-2 scale-105 opacity-20 blur-xl"></div>
+                                <div class="relative glass-panel p-8 rounded-3xl shadow-xl space-y-6 border border-slate-200/80 dark:border-slate-700/80">
+                                    <div class="flex items-center gap-4">
+                                        <div class="relative">
+                                            <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-sky-600 to-slate-800 flex items-center justify-center text-white text-3xl font-extrabold shadow-md">
+                                                皓軒
+                                            </div>
+                                            <div class="absolute -bottom-1 -right-1 bg-emerald-500 w-5 h-5 rounded-full border-2 border-white dark:border-slate-900" title="可預約顧問"></div>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">鍾皓軒 Howard</h3>
+                                            <p class="text-xs text-sky-600 dark:text-sky-400 font-semibold">TMR 臺灣行銷研究 創辦人</p>
+                                            <div class="mt-2 flex flex-wrap gap-1">
+                                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium">Python</span>
+                                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium">LLM / RAG</span>
+                                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium">GCP</span>
+                                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium">行銷資料科學</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Quick Interactive Simulated AI Assistant Widget -->
+                                    <div class="bg-slate-100 dark:bg-slate-800/80 p-4 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 space-y-3">
+                                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                                            <span><i class="fa-solid fa-robot text-sky-500 mr-1.5"></i> Howard AI 轉型助手</span>
+                                            <span class="text-[10px] text-emerald-500 font-normal">● 線上答詢中</span>
+                                        </div>
+                                        <div id="hero-ai-chat-box" class="text-xs text-slate-600 dark:text-slate-300 h-20 overflow-y-auto custom-scrollbar space-y-2">
+                                            <div class="bg-white dark:bg-slate-900 p-2.5 rounded-lg border border-slate-200 dark:border-slate-800">
+                                                👋 您好！我是 Howard 的 AI 助手。請問您的企業目前在 AI 導入上遇到哪種挑戰？（例如：資料分散、無適當工具、不知道效益）
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-2">
+                                            <input type="text" id="hero-ai-input" placeholder="輸入您的痛點或疑問..." class="flex-grow text-xs px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 dark:bg-slate-900 focus:outline-none focus:border-sky-500">
+                                            <button onclick="handleHeroAiQuery()" class="bg-sky-600 hover:bg-sky-500 text-white text-xs px-3 py-2 rounded-xl transition-colors">
+                                                發送
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust & Social Proof Logos -->
+            <div class="py-12 bg-white dark:bg-slate-900/60 border-y border-slate-200 dark:border-slate-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <p class="text-xs font-semibold text-slate-400 dark:text-slate-500 tracking-wider uppercase mb-6">
+                        受超過 50+ 頂尖企業、公家機關與高教學府信任之課程與顧問合作夥伴
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 opacity-75 grayscale hover:grayscale-0 transition-all">
+                        <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm font-bold text-slate-700 dark:text-slate-300"><i class="fa-solid fa-tower-cell text-sky-600 mr-2"></i>中華電信</span>
+                        <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm font-bold text-slate-700 dark:text-slate-300"><i class="fa-solid fa-plane text-emerald-600 mr-2"></i>長榮航空</span>
+                        <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm font-bold text-slate-700 dark:text-slate-300"><i class="fa-solid fa-microchip text-indigo-600 mr-2"></i>工研院 ITRI</span>
+                        <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm font-bold text-slate-700 dark:text-slate-300"><i class="fa-solid fa-laptop-code text-blue-600 mr-2"></i>資策會 III</span>
+                        <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm font-bold text-slate-700 dark:text-slate-300"><i class="fa-solid fa-building-columns text-purple-600 mr-2"></i>證基會</span>
+                        <span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm font-bold text-slate-700 dark:text-slate-300"><i class="fa-solid fa-graduation-cap text-amber-600 mr-2"></i>國立臺灣科技大學</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pain Points & Value Comparison Section -->
+            <div class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">您也正面臨這些 AI 轉型陣痛嗎？</h2>
+                    <p class="mt-4 text-slate-600 dark:text-slate-400">許多企業不是不想用 AI，而是「買了工具不會落地、有了資料無法發揮價值」。TMR 提供端對端的完整解決路徑。</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Current Pain Points -->
+                    <div class="bg-red-50/50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 p-8 rounded-3xl space-y-6">
+                        <div class="flex items-center gap-3 text-red-600 dark:text-red-400 font-bold text-xl">
+                            <i class="fa-solid fa-circle-xmark text-2xl"></i>
+                            <h3>傳統經營與工具盲點</h3>
+                        </div>
+                        <ul class="space-y-4 text-slate-700 dark:text-slate-300 text-sm">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+                                <span><strong>有資料卻不會用：</strong> 數據分散在各部門系統（ERP、CRM），無法統整出洞察。</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+                                <span><strong>買了工具無法落地：</strong> 買了昂貴 AI 軟體，員工卻依然使用舊流程，缺乏 Prompt 與實戰概念。</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+                                <span><strong>不知 AI 如何創造 ROI：</strong> 無法估算投資報酬率，AI 專案僅停留在 POC 階段無法量產。</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+                                <span><strong>行銷成效難以衡量：</strong> 投放費用持續攀升，卻無法以資料科學精準計算客戶終身價值（LTV）。</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- TMR Solution -->
+                    <div class="bg-sky-50/50 dark:bg-sky-950/20 border border-sky-200 dark:border-sky-900/50 p-8 rounded-3xl space-y-6">
+                        <div class="flex items-center gap-3 text-sky-600 dark:text-sky-400 font-bold text-xl">
+                            <i class="fa-solid fa-circle-check text-2xl"></i>
+                            <h3>TMR 鍾皓軒的賦能解法</h3>
+                        </div>
+                        <ul class="space-y-4 text-slate-700 dark:text-slate-300 text-sm">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-sky-500 mt-1"></i>
+                                <span><strong>客製化 Private RAG 知識庫：</strong> 將企業 SOP 與文件轉換為安全的私有智慧 Brain。</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-sky-500 mt-1"></i>
+                                <span><strong>0 到 1 客製化實戰培訓：</strong> 用「企業聽得懂、團隊學得會、現場用得上」的落地課程培訓員工。</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-sky-500 mt-1"></i>
+                                <span><strong>以數據驅動 ROI：</strong> 建立客戶流失預測與精準行銷模型，效益可衡量。</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-sky-500 mt-1"></i>
+                                <span><strong>RPA 工作流自動化：</strong> 串接重複性行政與報表作業，降低 70% 以上人力時間負擔。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Service Matrix Snapshot -->
+            <div class="py-20 bg-slate-100/70 dark:bg-slate-800/50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                        <div>
+                            <span class="text-xs font-semibold text-sky-600 dark:text-sky-400 tracking-widest uppercase">CORE SERVICES</span>
+                            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-2">三大核心 AI 服務範疇</h2>
+                        </div>
+                        <button onclick="switchTab('services')" class="mt-4 md:mt-0 text-sky-600 dark:text-sky-400 font-semibold text-sm hover:underline flex items-center gap-1">
+                            深入了解完整服務與技術細節 <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Card 1 -->
+                        <div class="glass-panel p-8 rounded-3xl border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all group">
+                            <div class="w-14 h-14 rounded-2xl bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">AI 技術落地開發</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                                客製化客服與內部 Agent Chatbot、RPA 流程自動化、AI 視覺圖文輔助與數據預測模型建置。
+                            </p>
+                            <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-2 mb-6">
+                                <li>● Python / LLM (Gemini, OpenAI)</li>
+                                <li>● 自動化報表與資料處理流程</li>
+                                <li>● 客戶流失與銷售預測模型</li>
+                            </ul>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="glass-panel p-8 rounded-3xl border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all group">
+                            <div class="w-14 h-14 rounded-2xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-chess-knight"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">戰略顧問與組織賦能</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                                協助企業打造私有 RAG 知識庫、規劃 0 到 1 AI 團隊，並設計數據驅動的自動化行銷漏斗。
+                            </p>
+                            <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-2 mb-6">
+                                <li>● 企業私有文件 RAG 知識庫</li>
+                                <li>● AI 團隊編制與工具選型</li>
+                                <li>● 全管道自動化名單追蹤漏斗</li>
+                            </ul>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="glass-panel p-8 rounded-3xl border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all group">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">企業 AI 實戰內訓</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                                依據企業高階決策層、中階管理層、一線執行團隊量身定制 Prompt 工程與數據分析工作坊。
+                            </p>
+                            <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-2 mb-6">
+                                <li>● 提示詞工程 (Prompt Engineering)</li>
+                                <li>● 實戰案例手把手實作</li>
+                                <li>● 成果衡量與落地評估 SOP</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 2.0: ABOUT ME ==================== -->
+        <section id="page-about" class="page-content hidden">
+            <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                <!-- Bio Banner -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5">
+                        <div class="relative rounded-3xl overflow-hidden glass-panel p-6 border border-slate-200 dark:border-slate-800 shadow-xl">
+                            <div class="w-full h-80 rounded-2xl bg-gradient-to-br from-slate-900 via-sky-950 to-slate-800 flex flex-col items-center justify-center text-white p-6 text-center space-y-4">
+                                <div class="w-24 h-24 rounded-full bg-sky-500 flex items-center justify-center text-4xl font-extrabold shadow-lg">
+                                    Howard
+                                </div>
+                                <div>
+                                    <h2 class="text-2xl font-bold">鍾皓軒</h2>
+                                    <p class="text-sky-400 text-sm font-medium">創辦人 & AI 轉型顧問</p>
+                                    <p class="text-xs text-slate-400 mt-1">臺灣行銷研究有限公司 (TMR)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-6">
+                        <span class="text-xs font-semibold text-sky-600 dark:text-sky-400 tracking-widest uppercase">BRAND STORY</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">跨越「技術深度」與「商業落地」的推手</h2>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            我是鍾皓軒，臺灣行銷研究（TMR）創辦人。在數據科學與人工智慧領域耕耘超過 8 年，我的使命是**「讓 AI 不再只是實驗室或科技巨頭的專利，而是每一家企業都能聽懂、學會、用得上的成長引擎」**。
+                        </p>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            過去多年來，我曾為金融業、製造業、化工業、醫療業、彩妝與高教機構等超過 8 大產業提供數據顧問與人才培訓服務。我深知企業引進新技術時最常遇到的瓶頸不是「演算法不夠先進」，而是「跨部門溝通卡關」與「不知如何與營運流程對接」。
+                        </p>
+
+                        <!-- Core Capabilities Stack -->
+                        <div class="pt-4">
+                            <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-3">核心技術與策略能力 Stack</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 rounded-lg bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300 text-xs font-medium">Python 數據分析</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300 text-xs font-medium">LLM 大型語言模型應用</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300 text-xs font-medium">RAG 私有知識庫</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300 text-xs font-medium">GCP 雲端架構</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-xs font-medium">行銷資料科學 (MDS)</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-xs font-medium">預測模型與客戶 Lifetime Value</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Experience -->
+                <div class="space-y-8">
+                    <div class="text-center max-w-2xl mx-auto">
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white">歷年顧問、授課與產業經歷</h3>
+                        <p class="text-sm text-slate-500 mt-2">持續推動台灣數據與 AI 應用落地的關鍵里程碑</p>
+                    </div>
+
+                    <div class="relative border-l-2 border-sky-500/30 ml-4 md:ml-32 space-y-10">
+                        <!-- Timeline Item 1 -->
+                        <div class="relative pl-8 md:pl-10">
+                            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-600 border-4 border-white dark:border-slate-900"></div>
+                            <span class="text-xs font-bold text-sky-600 dark:text-sky-400 block mb-1 md:absolute md:-left-32 md:top-1 md:text-right md:w-24">2018 - 至今</span>
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white">創辦 TMR 臺灣行銷研究有限公司</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">主導企業 AI 專案導入、行銷資料科學顧問、專利分析與客製化教育訓練，服務超過 50+ 家企業。</p>
+                        </div>
+
+                        <!-- Timeline Item 2 -->
+                        <div class="relative pl-8 md:pl-10">
+                            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-600 border-4 border-white dark:border-slate-900"></div>
+                            <span class="text-xs font-bold text-sky-600 dark:text-sky-400 block mb-1 md:absolute md:-left-32 md:top-1 md:text-right md:w-24">企業內訓講師</span>
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white">各大企業與公家法人指定授課導師</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">擔任中華電信、長榮航空、工研院（ITRI）、資策會（III）、證券期貨市場發展基金會等單位專題講師。</p>
+                        </div>
+
+                        <!-- Timeline Item 3 -->
+                        <div class="relative pl-8 md:pl-10">
+                            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-600 border-4 border-white dark:border-slate-900"></div>
+                            <span class="text-xs font-bold text-sky-600 dark:text-sky-400 block mb-1 md:absolute md:-left-32 md:top-1 md:text-right md:w-24">高等教育授課</span>
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white">大學兼任專家與講座學者</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">於國立臺灣科技大學、臺北市立大學等校教授 Python 行銷資料科學、AI 商業應用與市場分析課程。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 3.0: SERVICES ==================== -->
+        <section id="page-services" class="page-content hidden">
+            <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                <div class="text-center max-w-3xl mx-auto">
+                    <span class="text-xs font-semibold text-sky-600 dark:text-sky-400 tracking-widest uppercase">SOLUTIONS MATRIX</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-2">完整 AI 落地服務解決方案</h2>
+                    <p class="mt-4 text-slate-600 dark:text-slate-400">從策略評估、組織訓練到技術開發，提供全方位的商業賦能模組。</p>
+                </div>
+
+                <!-- Detailed Services Breakdown Grid -->
+                <div class="space-y-12">
+                    <!-- Section A: Technical Execution -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+                            <i class="fa-solid fa-gears text-sky-600"></i>
+                            <span>3.1 AI 技術落地開發服務</span>
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="glass-panel p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                                <div class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-900 text-sky-600 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-comments"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">客製化 AI Chatbot</h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">針對客服、內部 SOP 查詢、銷售導購設計智能 Agent 對話流程。</p>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                                <div class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-900 text-sky-600 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-bolt"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">RPA 流程自動化</h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">整合跨系統數據抓取、跨部門報表生成與常態性行政流程。</p>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                                <div class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-900 text-sky-600 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-palette"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">AI 視覺設計輔助</h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">建立行銷素材與社群視覺 AI 生成工作流，大幅提昇產出效率。</p>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                                <div class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-900 text-sky-600 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">數據預測模型</h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">建置客戶流失預測、銷量預估與 RFM 精準投放分析模型。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section B: Strategic Consulting -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+                            <i class="fa-solid fa-chess-board text-indigo-600"></i>
+                            <span>3.2 戰略與顧問規劃</span>
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="glass-panel p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                                <h4 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-database text-indigo-500"></i>
+                                    <span>企業私有化知識庫 (RAG)</span>
+                                </h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    將內部大量 PDF、Word、SOP 及會議紀錄，轉換為資安保密的私有 GPT 檢索 Brain，精準回答內部查詢。
+                                </p>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                                <h4 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-users-gear text-indigo-500"></i>
+                                    <span>0 到 1 AI 團隊建置顧問</span>
+                                </h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    協助企業評估 AI 成熟度、定義團隊關鍵職責 (Prompt Engineer / AI PM)，並建立導入檢核 SOP。
+                                </p>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                                <h4 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-filter-circle-dollar text-indigo-500"></i>
+                                    <span>行銷自動化漏斗設計</span>
+                                </h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    串聯 AI 內容產出、潛在名單自動捕捉、EDM/Message 培育與數據成效追蹤，自動化驅動轉化率。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Service Estimator Widget -->
+                <div class="bg-gradient-to-r from-sky-900 to-slate-900 rounded-3xl p-8 text-white space-y-6">
+                    <div class="max-w-2xl">
+                        <h3 class="text-2xl font-bold">快速測量您的企業需要哪種 AI 方案？</h3>
+                        <p class="text-sky-200 text-sm mt-2">勾選您的現狀，系統將為您推荐最佳切入模組：</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <label class="flex items-center gap-3 p-4 bg-white/10 rounded-xl cursor-pointer hover:bg-white/20 transition-colors">
+                            <input type="checkbox" id="check-rag" class="w-5 h-5 rounded text-sky-500">
+                            <span class="text-sm">資料分散且查詢 SOP 費時</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-4 bg-white/10 rounded-xl cursor-pointer hover:bg-white/20 transition-colors">
+                            <input type="checkbox" id="check-train" class="w-5 h-5 rounded text-sky-500">
+                            <span class="text-sm">同仁缺乏提示詞與 AI 應用觀念</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-4 bg-white/10 rounded-xl cursor-pointer hover:bg-white/20 transition-colors">
+                            <input type="checkbox" id="check-rpa" class="w-5 h-5 rounded text-sky-500">
+                            <span class="text-sm">大量重複性報表與文案製作</span>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between border-t border-white/10 pt-4">
+                        <div id="quiz-recommendation" class="text-sm text-sky-300 font-medium">
+                            👈 請於上方勾選目前遇到的組織痛點
+                        </div>
+                        <button onclick="switchTab('contact')" class="bg-sky-500 hover:bg-sky-400 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-colors">
+                            立即獲取完整企劃建議
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 4.0: PORTFOLIO ==================== -->
+        <section id="page-portfolio" class="page-content hidden">
+            <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center max-w-3xl mx-auto">
+                    <span class="text-xs font-semibold text-sky-600 dark:text-sky-400 tracking-widest uppercase">CASE STUDIES</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-2">跨產業經典案例作品集</h2>
+                    <p class="mt-4 text-slate-600 dark:text-slate-400">用真實成果數據說話，查看不同產業如何透過 TMR 實現 AI 落地轉型。</p>
+                </div>
+
+                <!-- Industry Filter Bar -->
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <button onclick="filterPortfolio('all')" class="portfolio-filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-sky-600 text-white" data-cat="all">全部產業</button>
+                    <button onclick="filterPortfolio('finance')" class="portfolio-filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200" data-cat="finance">金融與保險</button>
+                    <button onclick="filterPortfolio('manufacture')" class="portfolio-filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200" data-cat="manufacture">製造與化工</button>
+                    <button onclick="filterPortfolio('healthcare')" class="portfolio-filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200" data-cat="healthcare">生醫與彩妝</button>
+                    <button onclick="filterPortfolio('education')" class="portfolio-filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200" data-cat="education">高教與法人</button>
+                </div>
+
+                <!-- Portfolio Grid -->
+                <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Case Item 1 -->
+                    <div class="portfolio-card glass-panel rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all flex flex-col" data-cat="finance">
+                        <div class="p-6 space-y-4 flex-grow">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">金融與保險</span>
+                                <span class="text-xs text-slate-400">RAG 私有庫 + 內訓</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">知名金控企業：私有化 AI 智能規章與內部 SOP 查詢系統</h3>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                針對萬頁法規與內部保險商品規章，導入資安隔離的私有知識庫，大幅提升第一線業務與客服查證速度。
+                            </p>
+                            <div class="border-t border-slate-100 dark:border-slate-800 pt-4 space-y-2">
+                                <div class="text-xs text-emerald-600 dark:text-emerald-400 font-bold">● 成果：內部查詢時間縮短 85%</div>
+                                <div class="text-xs text-emerald-600 dark:text-emerald-400 font-bold">● 成果：解答精準度提升至 94%</div>
+                            </div>
+                        </div>
+                        <div class="p-6 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800">
+                            <button onclick="openCaseModal(1)" class="w-full py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:border-sky-500 transition-colors">
+                                查看完整的 STAR 案例細節
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Case Item 2 -->
+                    <div class="portfolio-card glass-panel rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all flex flex-col" data-cat="manufacture">
+                        <div class="p-6 space-y-4 flex-grow">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300">製造與化工</span>
+                                <span class="text-xs text-slate-400">RPA + 數據預測</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">跨國化工業：供應鏈數據自動化與銷量預估模型</h3>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                解決傳統人工 Excel 彙整產能與銷售數據的不確定性，建立自動化 Python 數據流水線與季節預測。
+                            </p>
+                            <div class="border-t border-slate-100 dark:border-slate-800 pt-4 space-y-2">
+                                <div class="text-xs text-emerald-600 dark:text-emerald-400 font-bold">● 成果：週報作業由 2 天降至 15 分鐘</div>
+                                <div class="text-xs text-emerald-600 dark:text-emerald-400 font-bold">● 成果：庫存預測誤差率降低 22%</div>
+                            </div>
+                        </div>
+                        <div class="p-6 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800">
+                            <button onclick="openCaseModal(2)" class="w-full py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:border-sky-500 transition-colors">
+                                查看完整的 STAR 案例細節
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Case Item 3 -->
+                    <div class="portfolio-card glass-panel rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all flex flex-col" data-cat="healthcare">
+                        <div class="p-6 space-y-4 flex-grow">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300">生醫與彩妝</span>
+                                <span class="text-xs text-slate-400">行銷自動化 + AI視覺</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">知名彩妝品牌：AI 多管道內容生成與精準行銷漏斗</h3>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                協助行銷團隊透過 Prompt 範本庫大量產出不同受眾切角之視覺素材與社群文案，並追蹤客戶回購率。
+                            </p>
+                            <div class="border-t border-slate-100 dark:border-slate-800 pt-4 space-y-2">
+                                <div class="text-xs text-emerald-600 dark:text-emerald-400 font-bold">● 成果：社群文案產出效率提升 3 倍</div>
+                                <div class="text-xs text-emerald-600 dark:text-emerald-400 font-bold">● 成果：ROAS 廣告投報率成長 35%</div>
+                            </div>
+                        </div>
+                        <div class="p-6 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800">
+                            <button onclick="openCaseModal(3)" class="w-full py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:border-sky-500 transition-colors">
+                                查看完整的 STAR 案例細節
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 5.0: BLOG & INSIGHTS ==================== -->
+        <section id="page-blog" class="page-content hidden">
+            <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center max-w-3xl mx-auto">
+                    <span class="text-xs font-semibold text-sky-600 dark:text-sky-400 tracking-widest uppercase">THOUGHT LEADERSHIP</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-2">AI 落地與行銷資料科學技術觀點</h2>
+                    <p class="mt-4 text-slate-600 dark:text-slate-400">分享企業 AI 轉型陷阱、Prompt 實戰工程與數據模型關鍵經驗。</p>
+                </div>
+
+                <!-- Search and Tags -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 max-w-2xl mx-auto">
+                    <div class="relative w-full">
+                        <input type="text" id="blog-search" oninput="filterBlogArticles()" placeholder="搜尋關鍵字（如：Prompt, RAG, ROI...）" class="w-full pl-10 pr-4 py-3 rounded-2xl border border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:outline-none focus:border-sky-500 text-sm">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
+                    </div>
+                </div>
+
+                <!-- Blog Posts List -->
+                <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Post 1 -->
+                    <article class="blog-card glass-panel rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 p-6 space-y-4 hover:shadow-lg transition-all" data-title="高管必讀：企業導入 AI 的三大地雷與正確 ROI 估算">
+                        <span class="text-xs font-semibold text-sky-600 dark:text-sky-400 uppercase">AI 轉型實戰</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white hover:text-sky-600 transition-colors cursor-pointer" onclick="openBlogModal(1)">
+                            高管必讀：企業導入 AI 的三大地雷與正確 ROI 估算
+                        </h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed">
+                            許多企業買了 LLM 工具後才發現員工不會用。本文拆解企業導入時最容易忽視的數據整備度、跨部門協同與量化指標設定。
+                        </p>
+                        <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3">
+                            <span>鍾皓軒 Howard</span>
+                            <span>5 分鐘閱讀</span>
+                        </div>
+                    </article>
+
+                    <!-- Post 2 -->
+                    <article class="blog-card glass-panel rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 p-6 space-y-4 hover:shadow-lg transition-all" data-title="企業私有知識庫 RAG 系統架構圖解與資安實踐">
+                        <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase">LLM & RAG 技術</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white hover:text-sky-600 transition-colors cursor-pointer" onclick="openBlogModal(2)">
+                            企業私有知識庫 RAG 系統架構圖解與資安實踐
+                        </h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed">
+                            如何將公司內部數萬份 SOP 與 PDF 檔案向量化？解析向量資料庫 Vector DB、嵌入模型 Embedding 與檢索精準度優化手法。
+                        </p>
+                        <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3">
+                            <span>鍾皓軒 Howard</span>
+                            <span>8 分鐘閱讀</span>
+                        </div>
+                    </article>
+
+                    <!-- Post 3 -->
+                    <article class="blog-card glass-panel rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 p-6 space-y-4 hover:shadow-lg transition-all" data-title="用 Python 與行銷資料科學重新定義客戶終身價值 (LTV)">
+                        <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase">行銷資料科學</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white hover:text-sky-600 transition-colors cursor-pointer" onclick="openBlogModal(3)">
+                            用 Python 與行銷資料科學重新定義客戶終身價值 (LTV)
+                        </h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed">
+                            告別盲目投放廣告！透過 RFM 模型與客戶流失預測演算法，把行銷預算集中在最具轉化潛力的黃金受眾身上。
+                        </p>
+                        <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3">
+                            <span>鍾皓軒 Howard</span>
+                            <span>6 分鐘閱讀</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 6.0: CONTACT & BOOKING ==================== -->
+        <section id="page-contact" class="page-content hidden">
+            <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                <div class="text-center max-w-3xl mx-auto">
+                    <span class="text-xs font-semibold text-sky-600 dark:text-sky-400 tracking-widest uppercase">GET IN TOUCH</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-2">開始您的 AI 與數據成長旅程</h2>
+                    <p class="mt-4 text-slate-600 dark:text-slate-400">無論是企業顧問、技術開發、內訓邀約或研討會演講，歡迎與我們團隊聯繫。</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <!-- Inquiry Form -->
+                    <div class="lg:col-span-7 glass-panel p-8 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-6">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">線上諮詢需求表單</h3>
+
+                        <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">您的姓名 *</label>
+                                    <input type="text" required placeholder="如：張經理" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 dark:bg-slate-900 text-sm focus:outline-none focus:border-sky-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">公司/單位名稱 *</label>
+                                    <input type="text" required placeholder="如：OO 科技股份有限公司" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 dark:bg-slate-900 text-sm focus:outline-none focus:border-sky-500">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">工作 Email *</label>
+                                    <input type="email" required placeholder="name@company.com" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 dark:bg-slate-900 text-sm focus:outline-none focus:border-sky-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">聯絡電話</label>
+                                    <input type="tel" placeholder="0912-345-678" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 dark:bg-slate-900 text-sm focus:outline-none focus:border-sky-500">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">諮詢需求類別 *</label>
+                                <select required class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 dark:bg-slate-900 text-sm focus:outline-none focus:border-sky-500">
+                                    <option value="">請選擇需求類別...</option>
+                                    <option value="consulting">企業 AI 專案顧問與系統導入</option>
+                                    <option value="training">企業 AI / 數據分析客製化內訓</option>
+                                    <option value="rag">私有知識庫 (RAG) 開發專案</option>
+                                    <option value="speech">研討會 / 大會主題演講邀約</option>
+                                    <option value="other">其他合作提案</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">專案背景或具體痛點說明</label>
+                                <textarea rows="4" placeholder="請簡述您的單位目前遇到的挑戰、預計時程或預算範圍..." class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 dark:bg-slate-900 text-sm focus:outline-none focus:border-sky-500"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-sky-500/20 text-sm">
+                                提交諮詢需求表單
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Calendly Scheduler Mock & Direct Info -->
+                    <div class="lg:col-span-5 space-y-8">
+                        <div class="bg-gradient-to-br from-slate-900 to-sky-950 p-8 rounded-3xl text-white space-y-6 shadow-xl border border-slate-800">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-sky-500/20 border border-sky-400/30 flex items-center justify-center text-sky-400 text-2xl font-bold">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">線上預約 15 分鐘對齊</h4>
+                                    <p class="text-xs text-sky-300">快速與 Howard 團隊進行線上需求對齊會議</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white/5 border border-white/10 p-4 rounded-2xl space-y-3">
+                                <div class="text-xs text-slate-300">📅 可預約時段（請點擊選擇）：</div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="selectBookingSlot('星期二 14:00 - 14:15')" class="booking-slot-btn text-xs py-2 px-3 rounded-lg border border-sky-500/30 bg-sky-500/10 text-sky-300 hover:bg-sky-500/30 transition-colors">
+                                        週二 14:00 - 14:15
+                                    </button>
+                                    <button onclick="selectBookingSlot('星期四 10:30 - 10:45')" class="booking-slot-btn text-xs py-2 px-3 rounded-lg border border-sky-500/30 bg-sky-500/10 text-sky-300 hover:bg-sky-500/30 transition-colors">
+                                        週四 10:30 - 10:45
+                                    </button>
+                                    <button onclick="selectBookingSlot('星期五 15:30 - 15:45')" class="booking-slot-btn text-xs py-2 px-3 rounded-lg border border-sky-500/30 bg-sky-500/10 text-sky-300 hover:bg-sky-500/30 transition-colors">
+                                        週五 15:30 - 15:45
+                                    </button>
+                                    <button onclick="selectBookingSlot('其他彈性預約')" class="booking-slot-btn text-xs py-2 px-3 rounded-lg border border-sky-500/30 bg-sky-500/10 text-sky-300 hover:bg-sky-500/30 transition-colors">
+                                        其他時間點此
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3 text-xs text-slate-300">
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-solid fa-envelope text-sky-400"></i>
+                                    <span>官方信箱：service@mktscience.org</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-solid fa-location-dot text-sky-400"></i>
+                                    <span>台灣行銷研究有限公司 (TMR)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Accordion -->
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-slate-900 dark:text-white text-lg">常見問題 FAQ</h4>
+                            <div class="space-y-3">
+                                <details class="glass-panel rounded-2xl p-4 border border-slate-200 dark:border-slate-800 cursor-pointer">
+                                    <summary class="font-semibold text-xs text-slate-900 dark:text-white">我們的公司數據量還很少，適合導入 AI 嗎？</summary>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+                                        完全適合。現代生成式 AI（如 LLM、Prompt 工程）不需要海量歷史資料即可立即在工作流程、內部查詢與內容產出中創造效率。
+                                    </p>
+                                </details>
+                                <details class="glass-panel rounded-2xl p-4 border border-slate-200 dark:border-slate-800 cursor-pointer">
+                                    <summary class="font-semibold text-xs text-slate-900 dark:text-white">企業內訓課程可以依據我們的產業進行客製嗎？</summary>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+                                        可以。所有 TMR 內訓課前都會進行關鍵痛點訪談，並將貴公司的真實業務情境轉化為課堂練習範例。
+                                    </p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-sky-600 flex items-center justify-center text-white font-bold text-sm">
+                        HC
+                    </div>
+                    <div>
+                        <span class="text-white font-bold text-sm block">鍾皓軒 Howard Chung</span>
+                        <span class="text-[10px] text-slate-500">TMR 臺灣行銷研究創辦人｜AI 轉型顧問</span>
+                    </div>
+                </div>
+                <div class="flex gap-6 text-sm">
+                    <a href="#" onclick="switchTab('home')" class="hover:text-white transition-colors">首頁</a>
+                    <a href="#" onclick="switchTab('about')" class="hover:text-white transition-colors">關於 Howard</a>
+                    <a href="#" onclick="switchTab('services')" class="hover:text-white transition-colors">AI 解決方案</a>
+                    <a href="#" onclick="switchTab('portfolio')" class="hover:text-white transition-colors">案例作品集</a>
+                    <a href="#" onclick="switchTab('contact')" class="hover:text-white transition-colors">聯絡我們</a>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-slate-500">
+                <p>© 2026 臺灣行銷研究有限公司 Taiwan Marketing Research. All Rights Reserved.</p>
+                <p>Designed for AI Transformation & Marketing Data Science Excellence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Case Modal -->
+    <div id="case-modal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="glass-panel bg-white dark:bg-slate-900 max-w-2xl w-full rounded-3xl p-8 space-y-6 max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800 shadow-2xl relative">
+            <button onclick="closeCaseModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="case-modal-body">
+                <!-- Dynamic Content Loaded via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Modal -->
+    <div id="blog-modal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="glass-panel bg-white dark:bg-slate-900 max-w-3xl w-full rounded-3xl p-8 space-y-6 max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800 shadow-2xl relative">
+            <button onclick="closeBlogModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="blog-modal-body">
+                <!-- Dynamic Article Loaded via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation Logic
+        function switchTab(tabId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(p => p.classList.add('hidden'));
+
+            // Show selected page
+            const selectedPage = document.getElementById(`page-${tabId}`);
+            if (selectedPage) {
+                selectedPage.classList.remove('hidden');
+            }
+
+            // Update Nav Active State
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => {
+                btn.classList.remove('text-sky-600', 'dark:text-sky-400', 'font-bold');
+            });
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if (activeNav) {
+                activeNav.classList.add('text-sky-600', 'dark:text-sky-400', 'font-bold');
+            }
+
+            // Close Mobile Menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile Hamburger Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Interactive Hero AI Assistant
+        async function handleHeroAiQuery() {
+            const inputEl = document.getElementById('hero-ai-input');
+            const chatBox = document.getElementById('hero-ai-chat-box');
+            const query = inputEl.value.trim();
+            if (!query) return;
+
+            // Append User Question
+            const userBubble = document.createElement('div');
+            userBubble.className = "bg-sky-600 text-white p-2.5 rounded-lg text-right font-medium";
+            userBubble.innerText = query;
+            chatBox.appendChild(userBubble);
+            inputEl.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Thinking State
+            const loadingBubble = document.createElement('div');
+            loadingBubble.className = "bg-white dark:bg-slate-900 p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 flex items-center gap-2";
+            loadingBubble.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Howard AI 分析中...`;
+            chatBox.appendChild(loadingBubble);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Call Gemini API or Smart Fallback Response
+            try {
+                const apiKey = ""; // Canvas runtime automatically injects key if set
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+                
+                const systemPrompt = "你是鍾皓軒 (Howard Chung, TMR 臺灣行銷研究創辦人) 的 AI 顧問分身。請以專業、親切且實務的口吻，簡短用 2-3 句話回答企業關於 AI 導入、私有知識庫、RPA 或內訓的疑問，並邀請對方預約 15 分鐘顧問對齊。";
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: query }] }],
+                        systemInstruction: { parts: [{ text: systemPrompt }] }
+                    })
+                });
+
+                const result = await response.json();
+                const aiReply = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                
+                chatBox.removeChild(loadingBubble);
+                const aiBubble = document.createElement('div');
+                aiBubble.className = "bg-white dark:bg-slate-900 p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 leading-relaxed";
+                
+                if (aiReply) {
+                    aiBubble.innerText = aiReply;
+                } else {
+                    // Fallback simulated response
+                    aiBubble.innerText = `針對「${query}」，Howard 團隊建議可透過客製化工作流自動化與私有 RAG 知識庫切入，平均能為企業降低 60% 以上的人力重複查詢成本。歡迎直接線上預約 15 分鐘對齊會議！`;
+                }
+                chatBox.appendChild(aiBubble);
+            } catch (err) {
+                chatBox.removeChild(loadingBubble);
+                const aiBubble = document.createElement('div');
+                aiBubble.className = "bg-white dark:bg-slate-900 p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200";
+                aiBubble.innerText = "針對您的情境，TMR 提供端對端的 AI 團隊建置與私有知識庫（RAG）開發。建議您點擊「預約 1-on-1 諮詢」安排初步需求討論！";
+                chatBox.appendChild(aiBubble);
+            }
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function filterPortfolio(category) {
+            const cards = document.querySelectorAll('.portfolio-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-cat') === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Update Active Filter Btn UI
+            const btns = document.querySelectorAll('.portfolio-filter-btn');
+            btns.forEach(btn => {
+                if (btn.getAttribute('data-cat') === category) {
+                    btn.className = "portfolio-filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-sky-600 text-white";
+                } else {
+                    btn.className = "portfolio-filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200";
+                }
+            });
+        }
+
+        // Case Modal STAR Data
+        const caseData = {
+            1: {
+                title: "知名金控企業：私有化 AI 智能規章與內部 SOP 查詢系統",
+                industry: "金融與保險業",
+                challenge: "金融業面臨法規繁複且經常更新問題，業務與客服每天花費 2-3 小時人工翻閱上萬頁 PDF 規章，效率低下且極易有資訊誤差風險。",
+                solution: "TMR 團隊建置私有化隔離的 RAG (Retrieval-Augmented Generation) 知識庫系統，並規劃權限管理與嵌入模型，對內部員工進行 2 天實戰 Prompt 工程內訓。",
+                results: ["內部规章查詢時間平均縮短 85%", "回答正確率達 94%，大幅降低人為合規風險", "全行 500+ 位同仁正式使用"]
+            },
+            2: {
+                title: "跨國化工業：供應鏈數據自動化與銷量預估模型",
+                industry: "製造與化工業",
+                challenge: "各廠區銷量與原料數據散落於不同 ERP 系統，每週需耗費大量人力手動複製貼上 Excel 進行庫存預估。",
+                solution: "開發 Python 數據串接流水線 (Automated Pipeline)，串接庫存與歷史銷售數據，並建置時間序列預測模型。",
+                results: ["每週統計報表時間從 2 天降至 15 分鐘", "庫存過剩風險與預測誤差降低 22%"]
+            },
+            3: {
+                title: "知名彩妝品牌：AI 多管道內容生成與精準行銷漏斗",
+                industry: "生醫與彩妝行銷",
+                challenge: "社群行銷素材需求量暴增，傳統圖文產出速度趕不上文案更新，廣告投放成本不斷飆升。",
+                solution: "導入 AI 視覺繪圖與提示詞模組，建立彩妝行銷素材快產流水線，並搭配 RFM 客戶模型進行精準電子報自動化分群。",
+                results: ["行銷素材產出產能提升 300%", "廣告投放 ROAS 顯著提升 35%"]
+            }
+        };
+
+        function openCaseModal(caseId) {
+            const data = caseData[caseId];
+            if (!data) return;
+
+            const modalBody = document.getElementById('case-modal-body');
+            modalBody.innerHTML = `
+                <div class="space-y-4">
+                    <span class="text-xs font-bold px-3 py-1 bg-sky-100 text-sky-700 rounded-md">${data.industry}</span>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white">${data.title}</h3>
+
+                    <div class="space-y-3 pt-2">
+                        <div class="bg-red-50 dark:bg-red-950/30 p-4 rounded-xl border border-red-200 dark:border-red-900/40">
+                            <h4 class="font-bold text-red-700 dark:text-red-400 text-sm mb-1">🎯 專案挑戰 (Challenge)</h4>
+                            <p class="text-xs text-slate-700 dark:text-slate-300">${data.challenge}</p>
+                        </div>
+
+                        <div class="bg-sky-50 dark:bg-sky-950/30 p-4 rounded-xl border border-sky-200 dark:border-sky-900/40">
+                            <h4 class="font-bold text-sky-700 dark:text-sky-400 text-sm mb-1">💡 TMR 解決方案 (Solution)</h4>
+                            <p class="text-xs text-slate-700 dark:text-slate-300">${data.solution}</p>
+                        </div>
+
+                        <div class="bg-emerald-50 dark:bg-emerald-950/30 p-4 rounded-xl border border-emerald-200 dark:border-emerald-900/40">
+                            <h4 class="font-bold text-emerald-700 dark:text-emerald-400 text-sm mb-1">📈 成果與數據效益 (Results)</h4>
+                            <ul class="list-disc list-inside text-xs text-slate-700 dark:text-slate-300 space-y-1">
+                                ${data.results.map(r => `<li>${r}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <button onclick="switchTab('contact'); closeCaseModal();" class="w-full mt-4 bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 rounded-xl text-sm transition-colors">
+                        為您的企業討論類似的 AI 轉型方案
+                    </button>
+                </div>
+            `;
+            document.getElementById('case-modal').classList.remove('hidden');
+        }
+
+        function closeCaseModal() {
+            document.getElementById('case-modal').classList.add('hidden');
+        }
+
+        function openBlogModal(blogId) {
+            const modalBody = document.getElementById('blog-modal-body');
+            modalBody.innerHTML = `
+                <div class="space-y-4 text-slate-800 dark:text-slate-200">
+                    <span class="text-xs font-semibold text-sky-600 uppercase">Howard 專欄觀點</span>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">高管必讀：企業導入 AI 的三大地雷與正確 ROI 估算</h2>
+                    <p class="text-xs text-slate-400">發佈於 TMR 科技觀點專欄｜作者：鍾皓軒 Howard</p>
+                    <div class="border-t border-slate-200 dark:border-slate-800 my-4"></div>
+                    <div class="space-y-3 text-sm leading-relaxed">
+                        <p>許多企業高管在 2024 至 2026 年間急於購買 LLM 訂閱或引進生成式 AI 系統，但往往在半年後發現「使用率低迷、投資報酬率難以量化」。經過服務數十家企業的實戰體驗，我們總結出三大核心誤區：</p>
+                        <h4 class="font-bold text-sky-600">地雷一：忽略數據整備度，直接上馬 AI 模型</h4>
+                        <p class="text-xs">如果企業內部的 SOP、產品規格書或會議紀錄本身就混亂不一，AI 解讀出的答案自然充滿幻覺。</p>
+                        <h4 class="font-bold text-sky-600">地雷二：缺乏落地實戰 Prompt 工程培訓</h4>
+                        <p class="text-xs">給同仁工具卻沒教方法，同仁只會把 ChatGPT 當搜尋引擎使用，無法融入日常自動化流程。</p>
+                        <p class="text-xs font-semibold bg-sky-50 dark:bg-slate-800 p-3 rounded-lg border-l-4 border-sky-500 mt-4">
+                            👉 想要避免轉型陷阱？歡迎聯繫 TMR 安排一次企業 AI 成熟度評估對齊會議。
+                        </p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('blog-modal').classList.remove('hidden');
+        }
+
+        function closeBlogModal() {
+            document.getElementById('blog-modal').classList.add('hidden');
+        }
+
+        function filterBlogArticles() {
+            const query = document.getElementById('blog-search').value.toLowerCase();
+            const articles = document.querySelectorAll('.blog-card');
+            articles.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                if (title.includes(query)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        function selectBookingSlot(slotName) {
+            alertModal(`已選擇預約時段：${slotName}！請填寫下方聯絡表單，團隊專員將於 24 小時內傳送正式線上會議連結。`);
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alertModal('感謝您的諮詢提案！鍾皓軒 Howard 團隊已收到您的需求，我們將於 1 個工作天內聯繫您。');
+            e.target.reset();
+        }
+
+        // Custom Modal UI instead of alert()
+        function alertModal(message) {
+            const modal = document.createElement('div');
+            modal.className = "fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4";
+            modal.innerHTML = `
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl max-w-sm w-full space-y-4 border border-slate-200 dark:border-slate-800 shadow-2xl text-center">
+                    <div class="w-12 h-12 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-2xl mx-auto">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <p class="text-sm font-medium text-slate-800 dark:text-slate-200 leading-relaxed">${message}</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="w-full bg-sky-600 text-white font-bold py-2 rounded-xl text-xs">
+                        確定
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Page Load Initializer
+        window.onload = function() {
+            switchTab('home');
+        };
+    </script>
+</body>
+</html>
