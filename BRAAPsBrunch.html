@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>坡坡饗早午餐屋 (BRAAPs Brunch & Coffee) | 淡水鄧公路溫暖手作早午餐</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            brown: '#A05A2C',     /* 主色 暖棕色 */
+                            cream: '#F8F3E8',     /* 奶油米白 */
+                            sage: '#6F8068',      /* 鼠尾草綠 */
+                            orange: '#E58A45',    /* 輔助 暖橘色 */
+                            yellow: '#F7D794',    /* 陽光黃 */
+                            coffee: '#332820',    /* 中性 深咖啡 */
+                            fog: '#A7A7A7',       /* 霧灰色 */
+                            light: '#F5F5F5',     /* 淺灰白 */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -10px rgba(51, 40, 32, 0.08)',
+                        'warm': '0 12px 24px -6px rgba(160, 90, 44, 0.18)',
+                        'orange': '0 10px 20px -5px rgba(229, 138, 69, 0.35)'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #F8F3E8;
+            color: #332820;
+        }
+        .bg-cream-pattern {
+            background-color: #F8F3E8;
+            background-image: radial-gradient(#A05A2C 0.45px, transparent 0.45px), radial-gradient(#A05A2C 0.45px, #F8F3E8 0.45px);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+            background-opacity: 0.08;
+        }
+        .glass-nav {
+            background: rgba(248, 243, 232, 0.94);
+            backdrop-filter: blur(12px);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8F3E8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #A05A2C;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-brand-cream text-brand-coffee antialiased selection:bg-brand-brown selection:text-white">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-40 glass-nav border-b border-brand-light transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo with Sun and Mountain Illustration -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-brown to-brand-orange flex items-center justify-center text-white shadow-warm group-hover:scale-105 transition-transform duration-300">
+                        <i class="fa-solid fa-sun text-xl text-brand-yellow"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline gap-1.5">
+                            <span class="text-xl sm:text-2xl font-black tracking-tight text-brand-coffee group-hover:text-brand-brown transition-colors">坡坡饗</span>
+                            <span class="text-xs sm:text-sm font-bold text-brand-sage">早午餐屋</span>
+                        </div>
+                        <span class="block text-[11px] font-bold text-brand-brown tracking-wider uppercase">BRAAPs Brunch & Coffee</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu Links -->
+                <div class="hidden md:flex items-center space-x-1 lg:space-x-3">
+                    <a href="#home" class="px-4 py-2 rounded-full text-sm font-bold text-brand-coffee hover:text-brand-brown hover:bg-white/70 transition-all">首頁</a>
+                    <a href="#pillars" class="px-4 py-2 rounded-full text-sm font-bold text-brand-coffee hover:text-brand-brown hover:bg-white/70 transition-all">品牌核心</a>
+                    <a href="#about" class="px-4 py-2 rounded-full text-sm font-bold text-brand-coffee hover:text-brand-brown hover:bg-white/70 transition-all">創辦人故事</a>
+                    <a href="#menu" class="px-4 py-2 rounded-full text-sm font-bold text-brand-coffee hover:text-brand-brown hover:bg-white/70 transition-all">美味菜單</a>
+                    <a href="#location" class="px-4 py-2 rounded-full text-sm font-bold text-brand-coffee hover:text-brand-brown hover:bg-white/70 transition-all">門市資訊</a>
+                </div>
+
+                <!-- Action Button & Cart Trigger -->
+                <div class="flex items-center gap-3">
+                    <a href="tel:0976902980" class="hidden sm:inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-brown text-white font-bold px-5 py-2.5 rounded-full shadow-orange hover:-translate-y-0.5 transition-all duration-200 text-sm">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>0976-902-980</span>
+                    </a>
+
+                    <!-- Cart Trigger -->
+                    <button onclick="toggleCartModal()" class="relative p-2.5 rounded-2xl bg-white border border-brand-light text-brand-coffee hover:border-brand-brown transition-colors shadow-sm">
+                        <i class="fa-solid fa-basket-shopping text-lg text-brand-brown"></i>
+                        <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-orange text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center hidden shadow-sm">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Trigger -->
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-brand-coffee hover:bg-white">
+                        <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-cream border-b border-brand-light px-4 pt-2 pb-6 space-y-2">
+            <a href="#home" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-bold text-brand-coffee hover:bg-white">首頁</a>
+            <a href="#pillars" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-bold text-brand-coffee hover:bg-white">品牌核心</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-bold text-brand-coffee hover:bg-white">創辦人故事</a>
+            <a href="#menu" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-bold text-brand-coffee hover:bg-white">美味菜單 & 線上點餐試算</a>
+            <a href="#location" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-bold text-brand-coffee hover:bg-white">門市資訊與營業時間</a>
+            <div class="pt-2">
+                <a href="tel:0976902980" class="flex items-center justify-center gap-2 w-full bg-brand-orange text-white font-bold py-3 rounded-full shadow-orange">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>電話預訂專線：0976-902-980</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-28 lg:pt-36 pb-16 lg:pb-24 relative overflow-hidden bg-cream-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Hero Text -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-brand-yellow/60 text-brand-brown text-xs sm:text-sm font-bold shadow-sm">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-orange animate-ping"></span>
+                        <i class="fa-solid fa-location-dot text-brand-orange"></i>
+                        <span>新北市淡水區鄧公路 23 號 門市服務中</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-brand-coffee tracking-tight leading-tight">
+                        用美味開啟<br class="hidden sm:inline">
+                        <span class="text-brand-brown underline decoration-brand-yellow decoration-8 underline-offset-4">美好的一天！</span>
+                    </h1>
+
+                    <p class="text-brand-coffee/80 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium">
+                        「15 年的餐飲堅持，只為遞上每一次美好的相遇。」坡坡饗早午餐屋 (BRAAPs Brunch & Coffee) 透過溫暖的手做美味、嚴選新鮮食材與質感空間，陪伴您享受放鬆舒適的早晨時光。
+                    </p>
+
+                    <!-- Store Realtime Status -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-3 pt-1">
+                        <div id="store-status-badge" class="px-4 py-2 rounded-full bg-white border border-brand-light shadow-sm flex items-center gap-2 text-sm font-bold">
+                            <!-- Populated via JS -->
+                        </div>
+                        <div class="px-4 py-2 rounded-full bg-white border border-brand-light shadow-sm flex items-center gap-2 text-xs sm:text-sm font-bold text-brand-coffee/70">
+                            <i class="fa-solid fa-clock text-brand-sage"></i>
+                            <span>平日 06:00 - 13:00 / 週六 07:00 - 13:00</span>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#menu" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-orange hover:bg-brand-brown text-white font-bold text-lg shadow-orange hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span>瀏覽美味菜單</span>
+                        </a>
+                        <a href="tel:0976902980" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-sage hover:bg-brand-coffee text-white font-bold text-lg shadow-soft hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>電話預訂 0976-902-980</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Hero Visual Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Decorative shapes in sunshine yellow and sage -->
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-brand-yellow/50 rounded-full blur-2xl"></div>
+                        <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-brand-sage/20 rounded-full blur-2xl"></div>
+
+                        <div class="relative bg-white p-6 rounded-3xl shadow-warm border border-brand-light space-y-6">
+                            <div class="relative h-64 sm:h-72 rounded-2xl overflow-hidden bg-brand-cream border border-brand-light flex items-center justify-center group">
+                                <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80" alt="坡坡饗手作早午餐" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/F8F3E8/332820?text=BRAAPs+Brunch'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-coffee/80 via-transparent to-transparent flex items-end p-6">
+                                    <div class="text-white">
+                                        <span class="bg-brand-orange text-white text-xs font-black px-2.5 py-1 rounded-md tracking-wider uppercase">人氣推薦</span>
+                                        <h3 class="text-xl font-black mt-1">煙燻鮭魚與手做總匯套餐</h3>
+                                        <p class="text-xs text-brand-cream/90 mt-0.5">點選鐵板麵套餐立折 10 元 ‧ 附蛋與精選飲品</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Highlights Banner -->
+                            <div class="grid grid-cols-3 gap-3 text-center">
+                                <div class="p-3 rounded-2xl bg-brand-cream/80 border border-brand-light">
+                                    <div class="text-brand-brown font-black text-lg">15 年</div>
+                                    <div class="text-xs text-brand-coffee/70 font-bold mt-0.5">餐飲職人堅持</div>
+                                </div>
+                                <div class="p-3 rounded-2xl bg-brand-cream/80 border border-brand-light">
+                                    <div class="text-brand-sage font-black text-lg">100%</div>
+                                    <div class="text-xs text-brand-coffee/70 font-bold mt-0.5">新鮮用心手作</div>
+                                </div>
+                                <div class="p-3 rounded-2xl bg-brand-cream/80 border border-brand-light">
+                                    <div class="text-brand-orange font-black text-lg">淡水區</div>
+                                    <div class="text-xs text-brand-coffee/70 font-bold mt-0.5">鄧公路 23 號</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Core Strategy Section -->
+    <section id="pillars" class="py-16 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <span class="text-brand-brown font-bold text-xs tracking-widest uppercase bg-brand-cream border border-brand-yellow px-4 py-1.5 rounded-full">Brand Core Value</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-brand-coffee mt-3 tracking-tight">透過顏色與美味，建立溫暖的第一眼感受</h2>
+                <p class="text-brand-coffee/70 text-sm sm:text-base mt-2">我們以「溫暖、自然、手作、舒適」為品牌核心，為您打造充滿亮麗溫度的早晨氛圍。</p>
+                <div class="w-16 h-1 bg-brand-brown mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- 4 Core Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Warm Card -->
+                <div class="p-6 rounded-3xl bg-brand-cream border border-brand-light text-center space-y-3 hover:shadow-warm transition-all duration-300 group">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-white text-brand-orange border border-brand-yellow/60 flex items-center justify-center text-2xl shadow-sm group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+                    <h3 class="font-black text-brand-coffee text-lg">溫暖</h3>
+                    <p class="text-xs text-brand-coffee/70 leading-relaxed font-medium">傳遞美好心情與暖心笑容</p>
+                </div>
+
+                <!-- Natural Card -->
+                <div class="p-6 rounded-3xl bg-brand-cream border border-brand-light text-center space-y-3 hover:shadow-warm transition-all duration-300 group">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-white text-brand-sage border border-brand-light flex items-center justify-center text-2xl shadow-sm group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3 class="font-black text-brand-coffee text-lg">自然</h3>
+                    <p class="text-xs text-brand-coffee/70 leading-relaxed font-medium">強調新鮮嚴選食材品質</p>
+                </div>
+
+                <!-- Handmade Card -->
+                <div class="p-6 rounded-3xl bg-brand-cream border border-brand-light text-center space-y-3 hover:shadow-warm transition-all duration-300 group">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-white text-brand-brown border border-brand-light flex items-center justify-center text-2xl shadow-sm group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h3 class="font-black text-brand-coffee text-lg">手作</h3>
+                    <p class="text-xs text-brand-coffee/70 leading-relaxed font-medium">展現用心製作美味餐點</p>
+                </div>
+
+                <!-- Comfortable Card -->
+                <div class="p-6 rounded-3xl bg-brand-cream border border-brand-light text-center space-y-3 hover:shadow-warm transition-all duration-300 group">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-white text-brand-brown border border-brand-yellow/60 flex items-center justify-center text-2xl shadow-sm group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <h3 class="font-black text-brand-coffee text-lg">舒適</h3>
+                    <p class="text-xs text-brand-coffee/70 leading-relaxed font-medium">打造放鬆放慢的用語餐環境</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (Founder's Story) -->
+    <section id="about" class="py-20 bg-brand-cream relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <span class="text-brand-brown font-bold text-xs tracking-widest uppercase bg-white border border-brand-light px-4 py-1.5 rounded-full">About The Founder</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-brand-coffee mt-3 tracking-tight">15 年的堅持，只為一份帶給人幸福的餐點</h2>
+                <div class="w-16 h-1 bg-brand-brown mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Founder Quote Card -->
+                <div class="lg:col-span-5">
+                    <div class="relative">
+                        <div class="absolute -top-4 -left-4 w-24 h-24 bg-brand-yellow/60 rounded-3xl -rotate-6 -z-10"></div>
+                        <div class="bg-brand-brown rounded-3xl p-8 text-white shadow-warm space-y-6">
+                            <div class="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-brand-yellow text-3xl">
+                                <i class="fa-solid fa-quote-left"></i>
+                            </div>
+                            <blockquote class="text-brand-cream text-lg leading-relaxed italic font-medium">
+                                「對我而言，餐飲不只是一份工作，更是一門需要用心經營的專業。餐飲的價值，來自每一次與客人的相遇。」
+                            </blockquote>
+                            <div class="pt-4 border-t border-white/20 flex items-center justify-between">
+                                <div>
+                                    <p class="font-black text-white text-lg">坡坡饗 創辦人</p>
+                                    <p class="text-xs text-brand-yellow font-bold">15 年餐飲熱情與品質堅持</p>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-brand-orange flex items-center justify-center text-xl font-black text-white border-2 border-brand-yellow">
+                                    坡
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story Text Details -->
+                <div class="lg:col-span-7 space-y-6 text-brand-coffee text-base sm:text-lg leading-relaxed font-medium">
+                    <p class="font-bold text-brand-coffee text-xl">
+                        我是「坡坡饗早午餐屋 (BRAAPs Brunch & Coffee)」的創辦人，投入餐飲業至今已有 <span class="text-brand-brown font-black underline decoration-brand-yellow decoration-4">15 年</span>。
+                    </p>
+                    <p>
+                        一路走來，我始終相信，一份好吃的餐點，不只是填飽肚子，更是一段讓人感到幸福與溫暖的時光。從食材挑選、餐點設計，到廚房流程與顧客服務，我親自參與每一個環節，也在日復一日的餐飲工作中，累積了對味道、品質與服務的堅持。
+                    </p>
+                    <p>
+                        「坡坡饗早午餐屋」承載著我對餐飲的熱愛，希望透過新鮮食材、用心料理與真誠服務，讓每位來到店裡的客人，都能享受一份美味而愉快的早午餐時光。
+                    </p>
+                    <p class="text-brand-coffee font-bold bg-white p-5 rounded-2xl border-l-4 border-brand-brown shadow-sm">
+                        15 年的經驗讓我更加確定，餐飲的價值來自每一次與客人的相遇。未來，我也將持續精進餐飲專業、探索更多美味可能，讓「坡坡饗」不只是一間早午餐店，更成為大家生活中值得再次造訪的美好品牌。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu & Ordering Section -->
+    <section id="menu" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Menu Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+                <div>
+                    <span class="text-brand-brown font-bold text-xs tracking-widest uppercase bg-brand-cream border border-brand-yellow px-4 py-1.5 rounded-full">BRAAPs Menu</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-brand-coffee mt-3 tracking-tight">美味菜單與試算預訂</h2>
+                    <p class="text-brand-coffee/70 text-sm sm:text-base mt-2">點擊餐點即可加入試算清單，一鍵撥號向店內快速報號點餐！</p>
+                </div>
+
+                <!-- Hotline Card -->
+                <div class="bg-brand-cream p-4 rounded-2xl border border-brand-light shadow-sm flex flex-col sm:flex-row items-center gap-4">
+                    <div class="text-center sm:text-left">
+                        <div class="text-xs text-brand-coffee/70 font-bold">訂餐報單專線 (鄧公路23號)</div>
+                        <div class="text-xl font-black text-brand-brown">0976-902-980</div>
+                    </div>
+                    <a href="tel:0976902980" class="w-full sm:w-auto bg-brand-orange hover:bg-brand-brown text-white font-bold px-5 py-2.5 rounded-full shadow-orange text-sm text-center transition-all">
+                        <i class="fa-solid fa-phone mr-1"></i> 直接撥號
+                    </a>
+                </div>
+            </div>
+
+            <!-- Combo Deal Alert Banner -->
+            <div class="mb-8 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-brand-sage to-brand-brown text-white shadow-soft flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-xl shrink-0 text-brand-yellow">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+                    <div>
+                        <span class="font-black text-base sm:text-lg">【鐵板麵套餐優惠】</span>
+                        <p class="text-xs sm:text-sm text-brand-cream/90">點選鐵板麵搭配套餐（含麵、蛋、單點肉品、飲品）立折 10 元！加蛋均一價 +15 元</p>
+                    </div>
+                </div>
+                <div class="text-xs font-bold bg-brand-yellow text-brand-coffee px-3.5 py-1.5 rounded-full shadow-sm">
+                    手作新鮮現做
+                </div>
+            </div>
+
+            <!-- Search Bar & Category Filter -->
+            <div class="space-y-4 mb-8">
+                <!-- Search Input -->
+                <div class="relative max-w-md">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-brand-fog"></i>
+                    <input type="text" id="menu-search" oninput="filterMenuItems()" placeholder="搜尋餐點（例如：蛋餅、腿排、卡啦雞...）" class="w-full pl-11 pr-4 py-3 rounded-full bg-brand-cream border border-brand-light focus:outline-none focus:border-brand-brown text-sm font-medium transition-all shadow-sm">
+                </div>
+
+                <!-- Category Tabs -->
+                <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="category-tabs">
+                    <!-- Dynamic tabs rendered via JS -->
+                </div>
+            </div>
+
+            <!-- Menu Grid -->
+            <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamic cards populated via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Store Info Section -->
+    <section id="location" class="py-20 bg-brand-cream relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Info Box -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <span class="text-brand-brown font-bold text-xs tracking-widest uppercase bg-white border border-brand-light px-4 py-1.5 rounded-full">Visit Us</span>
+                        <h2 class="text-3xl sm:text-4xl font-black text-brand-coffee mt-3 tracking-tight">門市資訊與營業時間</h2>
+                        <p class="text-brand-coffee/70 text-sm mt-2">歡迎造訪淡水鄧公路門市，享用熱騰騰的手做早午餐！</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Address -->
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-brand-light shadow-sm">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-brown text-white flex items-center justify-center text-xl shrink-0 shadow-sm">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-black text-brand-coffee">門市地址</h4>
+                                <p class="text-brand-coffee font-bold">新北市淡水區鄧公路 23 號</p>
+                                <p class="text-xs text-brand-coffee/60">淡水捷運站徒步約 5 - 8 分鐘</p>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-brand-light shadow-sm">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-orange text-white flex items-center justify-center text-xl shrink-0 shadow-sm">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-black text-brand-coffee">訂餐專線</h4>
+                                <a href="tel:0976902980" class="text-xl font-black text-brand-brown hover:underline">0976-902-980</a>
+                                <p class="text-xs text-brand-coffee/60">歡迎電話提前預訂外帶，節省等待時間</p>
+                            </div>
+                        </div>
+
+                        <!-- Business Hours Breakdown Card -->
+                        <div class="p-6 rounded-3xl bg-brand-coffee text-white shadow-soft space-y-4">
+                            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-clock text-brand-yellow"></i>
+                                    <span class="font-black">詳細營業時間</span>
+                                </div>
+                                <span class="text-xs bg-brand-orange text-white font-bold px-3 py-1 rounded-full">坡坡饗</span>
+                            </div>
+                            <div class="space-y-2.5 text-sm font-medium">
+                                <div class="flex justify-between items-center text-brand-cream/90">
+                                    <span>週一 至 週五</span>
+                                    <span class="font-black text-white">06:00 – 13:00</span>
+                                </div>
+                                <div class="flex justify-between items-center text-brand-cream/90">
+                                    <span>週六</span>
+                                    <span class="font-black text-white">07:00 – 13:00</span>
+                                </div>
+                                <div class="flex justify-between items-center text-red-300 font-bold pt-2 border-t border-white/10">
+                                    <span>週日</span>
+                                    <span class="bg-red-500/20 text-red-300 border border-red-500/30 px-3 py-0.5 rounded-full text-xs">固定公休</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Map View -->
+                <div class="lg:col-span-7">
+                    <div class="relative rounded-3xl overflow-hidden shadow-warm border-4 border-white bg-white min-h-[400px] flex flex-col justify-between">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.158309355474!2d121.4485!3d25.1728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442aff2ee09e4f1%3A0x8dd34079c6d31!2zMjUxODTmlrDmsJfngaPmsJ_ljY3nhp3ogpA2N-iZnw!5e0!3m2!1szh-TW!2stw!4v1700000000000!5m2!1szh-TW!2stw" 
+                            class="w-full h-[420px] border-0" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                        <div class="p-4 bg-white border-t border-brand-light flex items-center justify-between">
+                            <span class="text-xs font-bold text-brand-coffee"><i class="fa-solid fa-map-pin text-brand-orange mr-1"></i> 新北市淡水區鄧公路 23 號</span>
+                            <a href="https://maps.google.com/?q=新北市淡水區鄧公路23號" target="_blank" class="text-xs font-black text-brand-brown hover:text-brand-orange underline">
+                                開啟 Google 地圖導航 <i class="fa-solid fa-arrow-up-right-from-square ml-0.5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal Drawer -->
+    <div id="cart-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-end transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div class="w-full max-w-md bg-white h-full shadow-2xl flex flex-col justify-between p-6 overflow-y-auto transform translate-x-full transition-transform duration-300" id="cart-drawer">
+            <div>
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between pb-4 border-b border-brand-light">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-basket-shopping text-brand-brown text-xl"></i>
+                        <h3 class="text-xl font-black text-brand-coffee">您的試算點餐清單</h3>
+                    </div>
+                    <button onclick="toggleCartModal()" class="p-2 rounded-xl text-brand-fog hover:text-brand-coffee hover:bg-brand-cream">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Items Container -->
+                <div id="cart-items" class="py-4 divide-y divide-brand-light space-y-3">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- Cart Footer -->
+            <div class="pt-4 border-t border-brand-light space-y-4">
+                <div class="space-y-2">
+                    <div class="flex justify-between text-sm text-brand-coffee/70 font-medium">
+                        <span>品項小計</span>
+                        <span id="cart-subtotal" class="font-bold text-brand-coffee">$0</span>
+                    </div>
+                    <div class="flex justify-between text-lg font-black text-brand-coffee pt-2 border-t border-dashed border-brand-light">
+                        <span>預估總金額</span>
+                        <span id="cart-total" class="text-brand-brown">$0</span>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <a href="tel:0976902980" class="w-full py-3.5 bg-brand-orange hover:bg-brand-brown text-white font-bold rounded-full flex items-center justify-center gap-2 shadow-orange">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>撥打 0976-902-980 報單訂餐</span>
+                    </a>
+                    <button onclick="copyCartSummary()" class="w-full py-3 bg-brand-cream text-brand-coffee font-bold rounded-full hover:bg-brand-yellow/60 transition-colors text-sm flex items-center justify-center gap-2 border border-brand-light">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>複製點餐明細 (發送給朋友或備忘)</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-brand-coffee text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-brand-yellow text-xl"></i>
+        <span id="toast-message" class="text-sm font-bold">提示訊息</span>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-brand-coffee text-brand-cream py-12 border-t border-brand-coffee">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="text-center py-4 border-b border-white/10">
+                <span class="text-brand-yellow font-bold tracking-widest text-sm">美味 ‧ 從這裡開始 ── 坡坡饗 早午餐屋</span>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <!-- Brand Info -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-brand-brown flex items-center justify-center text-white font-black text-lg shadow-sm">
+                        坡
+                    </div>
+                    <div>
+                        <span class="text-lg font-black text-white">坡坡饗早午餐屋 (BRAAPs Brunch & Coffee)</span>
+                        <p class="text-xs text-brand-fog">15 年餐飲熱情 ‧ 淡水鄧公路溫暖首選</p>
+                    </div>
+                </div>
+
+                <!-- Footer Menu Nav Links -->
+                <div class="flex flex-wrap justify-center gap-6 text-sm font-medium text-brand-cream/80">
+                    <a href="#home" class="hover:text-white transition-colors">首頁</a>
+                    <a href="#pillars" class="hover:text-white transition-colors">品牌核心</a>
+                    <a href="#about" class="hover:text-white transition-colors">創辦人故事</a>
+                    <a href="#menu" class="hover:text-white transition-colors">美味菜單</a>
+                    <a href="#location" class="hover:text-white transition-colors">門市資訊</a>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-xs text-brand-fog gap-4">
+                <p>&copy; 2026 坡坡饗早午餐屋 (BRAAPs Brunch & Coffee). All rights reserved.</p>
+                <p>門市地址：新北市淡水區鄧公路 23 號 ｜ 訂餐專線：0976-902-980</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Full Dataset corresponding exactly to the uploaded menu card
+        const menuData = [
+            // 蛋餅系列
+            { id: 'db1', category: '蛋餅系列', name: '原味蛋餅', price: 30, desc: '經典手作酥皮原味蛋餅' },
+            { id: 'db2', category: '蛋餅系列', name: '玉米蛋餅', price: 35, desc: '香甜玉米粒搭配濃郁蛋香' },
+            { id: 'db3', category: '蛋餅系列', name: '起司蛋餅', price: 35, desc: '金黃融化起司' },
+            { id: 'db4', category: '蛋餅系列', name: '肉鬆蛋餅', price: 40, desc: '古早味香酥肉鬆' },
+            { id: 'db5', category: '蛋餅系列', name: '火腿蛋餅', price: 45, desc: '香煎優質火腿' },
+            { id: 'db6', category: '蛋餅系列', name: '拉絲蛋餅', price: 45, desc: '超牽絲莫札瑞拉起司' },
+            { id: 'db7', category: '蛋餅系列', name: '培根蛋餅', price: 45, desc: '鹹香脆口培根' },
+            { id: 'db8', category: '蛋餅系列', name: '香雞蛋餅', price: 45, desc: '嫩煎香雞排' },
+            { id: 'db9', category: '蛋餅系列', name: '鮪魚蛋餅', price: 45, desc: '特調美味鮪魚餡' },
+            { id: 'db10', category: '蛋餅系列', name: '薯餅蛋餅', price: 55, desc: '香酥薯餅內餡' },
+            { id: 'db11', category: '蛋餅系列', name: '里肌豬排蛋餅', price: 65, desc: '獨家醃製鮮嫩里肌豬排' },
+            { id: 'db12', category: '蛋餅系列', name: '雞胸排蛋餅', price: 80, desc: '清爽低負擔雞胸肉' },
+            { id: 'db13', category: '蛋餅系列', name: '腿排蛋餅 (原味/辣味)', price: 80, desc: '多汁去骨雞腿排' },
+            { id: 'db14', category: '蛋餅系列', name: '卡啦雞蛋餅 (原味/辣味)', price: 80, desc: '金黃酥脆卡啦雞' },
+            { id: 'db15', category: '蛋餅系列', name: '鮮蝦排蛋餅', price: 80, desc: '真材實料鮮甜蝦排' },
+
+            // 吐司系列
+            { id: 'ts1', category: '吐司系列', name: '煎蛋吐司', price: 35, desc: '現煎嫩蛋香軟吐司' },
+            { id: 'ts2', category: '吐司系列', name: '玉米吐司', price: 40, desc: '甜玉米加蛋吐司' },
+            { id: 'ts3', category: '吐司系列', name: '起司吐司', price: 40, desc: '濃郁起司蛋吐司' },
+            { id: 'ts4', category: '吐司系列', name: '火腿吐司', price: 50, desc: '火腿蛋吐司' },
+            { id: 'ts5', category: '吐司系列', name: '拉絲吐司', price: 50, desc: '牽絲起司吐司' },
+            { id: 'ts6', category: '吐司系列', name: '培根吐司', price: 50, desc: '焦香培根蛋吐司' },
+            { id: 'ts7', category: '吐司系列', name: '香雞吐司', price: 50, desc: '嫩煎香雞排吐司' },
+            { id: 'ts8', category: '吐司系列', name: '鮪魚吐司', price: 50, desc: '特調鮪魚沙拉吐司' },
+            { id: 'ts9', category: '吐司系列', name: '薯餅吐司', price: 55, desc: '香酥薯餅吐司' },
+            { id: 'ts10', category: '吐司系列', name: '里肌豬排吐司', price: 65, desc: '招牌醃製里肌肉吐司' },
+            { id: 'ts11', category: '吐司系列', name: '雞胸排吐司', price: 80, desc: '鮮嫩雞胸排吐司' },
+            { id: 'ts12', category: '吐司系列', name: '腿排吐司 (原味/辣味)', price: 80, desc: '厚實去骨雞腿排吐司' },
+            { id: 'ts13', category: '吐司系列', name: '卡啦雞吐司 (原味/辣味)', price: 80, desc: '酥脆卡啦雞腿吐司' },
+
+            // 漢堡系列
+            { id: 'hb1', category: '漢堡系列', name: '煎蛋漢堡', price: 40, desc: '鬆軟美式漢堡包搭配煎蛋' },
+            { id: 'hb2', category: '漢堡系列', name: '玉米漢堡', price: 45, desc: '香甜玉米蛋漢堡' },
+            { id: 'hb3', category: '漢堡系列', name: '起司漢堡', price: 45, desc: '起司蛋漢堡' },
+            { id: 'hb4', category: '漢堡系列', name: '火腿漢堡', price: 55, desc: '火腿蛋漢堡' },
+            { id: 'hb5', category: '漢堡系列', name: '拉絲漢堡', price: 55, desc: '拉絲起司漢堡' },
+            { id: 'hb6', category: '漢堡系列', name: '培根漢堡', price: 55, desc: '培根蛋漢堡' },
+            { id: 'hb7', category: '漢堡系列', name: '香雞漢堡', price: 55, desc: '香雞排漢堡' },
+            { id: 'hb8', category: '漢堡系列', name: '鮪魚漢堡', price: 55, desc: '鮪魚沙拉漢堡' },
+            { id: 'hb9', category: '漢堡系列', name: '薯餅漢堡', price: 60, desc: '金黃薯餅漢堡' },
+            { id: 'hb10', category: '漢堡系列', name: '里肌豬排漢堡', price: 70, desc: '美味里肌豬排漢堡' },
+            { id: 'hb11', category: '漢堡系列', name: '雞胸排漢堡', price: 85, desc: '鮮嫩雞胸排漢堡' },
+            { id: 'hb12', category: '漢堡系列', name: '腿排漢堡 (原味/辣味)', price: 85, desc: '勁辣/原味雞腿排漢堡' },
+            { id: 'hb13', category: '漢堡系列', name: '卡啦雞漢堡 (原味/辣味)', price: 85, desc: '卡啦雞腿漢堡' },
+
+            // 鐵板麵系列
+            { id: 'tm1', category: '鐵板麵系列', name: '蘑菇鐵板麵', price: 50, desc: '經典蘑菇醬鐵板麵 (加蛋+15)' },
+            { id: 'tm2', category: '鐵板麵系列', name: '黑胡椒鐵板麵', price: 50, desc: '香辣黑胡椒醬鐵板麵 (加蛋+15)' },
+            { id: 'tm3', category: '鐵板麵系列', name: '肉燥鐵板麵 (原味/辣味)', price: 50, desc: '台式古早味肉燥 (加蛋+15)' },
+            { id: 'tm4', category: '鐵板麵系列', name: '義大利肉醬麵', price: 55, desc: '濃郁蕃茄肉醬 (加蛋+15)' },
+            { id: 'tm5', category: '鐵板麵系列', name: '宮保雞丁麵', price: 60, desc: '川味微辣宮保雞丁 (加蛋+15)' },
+            { id: 'tm6', category: '鐵板麵系列', name: '奶油白醬麵', price: 65, desc: '奶香滑順白醬 (加蛋+15)' },
+            { id: 'tm7', category: '鐵板麵系列', name: '羅勒青醬麵', price: 65, desc: '芳香羅勒青醬 (加蛋+15)' },
+
+            // 總匯系列
+            { id: 'zh1', category: '總匯系列', name: '鮪魚總匯', price: 75, desc: '豐盛三層鮪魚總匯吐司' },
+            { id: 'zh2', category: '總匯系列', name: '里肌豬排總匯', price: 85, desc: '里肌豬排豐富總匯' },
+            { id: 'zh3', category: '總匯系列', name: '雙起司總匯', price: 95, desc: '雙重起司香濃總匯' },
+            { id: 'zh4', category: '總匯系列', name: '雞胸排總匯', price: 100, desc: '嫩雞胸高蛋白質總匯' },
+            { id: 'zh5', category: '總匯系列', name: '花生卡啦總匯', price: 100, desc: '花生醬搭配酥脆卡啦雞' },
+            { id: 'zh6', category: '總匯系列', name: '鮮蝦排總匯', price: 100, desc: '豪華鮮蝦排總匯' },
+
+            // 果醬 / 厚片 / 乳酪餅
+            { id: 'gj1', category: '果醬/厚片/乳酪餅', name: '巧克力果醬/厚片/乳酪餅', price: 25, desc: '果醬 $25 / 厚片 $35 / 乳酪餅 $40' },
+            { id: 'gj2', category: '果醬/厚片/乳酪餅', name: '花生果醬/厚片/乳酪餅', price: 25, desc: '果醬 $25 / 厚片 $35 / 乳酪餅 $40' },
+            { id: 'gj3', category: '果醬/厚片/乳酪餅', name: '草莓果醬/厚片/乳酪餅', price: 25, desc: '果醬 $25 / 厚片 $35 / 乳酪餅 $40' },
+            { id: 'gj4', category: '果醬/厚片/乳酪餅', name: '香蒜果醬/厚片', price: 25, desc: '果醬 $25 / 厚片 $35' },
+            { id: 'gj5', category: '果醬/厚片/乳酪餅', name: '奶酥果醬/厚片', price: 25, desc: '果醬 $25 / 厚片 $35' },
+            { id: 'gj6', category: '果醬/厚片/乳酪餅', name: '香蒜起司厚片', price: 45, desc: '香蒜起司雙重抹醬' },
+            { id: 'gj7', category: '果醬/厚片/乳酪餅', name: '嫩蛋乳酪餅', price: 50, desc: '香濃金黃乳酪餅包嫩蛋' },
+            { id: 'gj8', category: '果醬/厚片/乳酪餅', name: '火腿蛋乳酪餅', price: 55, desc: '火腿蛋乳酪餅' },
+
+            // 點心與單點系列
+            { id: 'ds1', category: '點心與單點', name: '煎蛋', price: 15, desc: '單點荷包蛋' },
+            { id: 'ds2', category: '點心與單點', name: '嫩蛋 / 薯餅', price: 25, desc: '香濃嫩蛋或金黃薯餅' },
+            { id: 'ds3', category: '點心與單點', name: '熱狗', price: 30, desc: '香煎熱狗' },
+            { id: 'ds4', category: '點心與單點', name: '細薯條 / 雞塊 / 蘿蔔糕 / 蔥抓餅', price: 40, desc: '點心單點 $40' },
+            { id: 'ds5', category: '點心與單點', name: '香煎薯餅', price: 50, desc: '香煎脆薯餅' },
+            { id: 'ds6', category: '點心與單點', name: '炸物拼盤', price: 75, desc: '熱狗x2, 雞塊x2, 薯泥棒x2, 薯餅x1' },
+            { id: 'ds7', category: '點心與單點', name: '單點 里肌豬排', price: 45, desc: '香煎醃製里肌豬排' },
+            { id: 'ds8', category: '點心與單點', name: '單點 鮮蝦排 / 卡啦雞 / 腿排', price: 65, desc: '美味主菜單點 $65' },
+
+            // 飲品系列
+            { id: 'dr1', category: '飲品系列', name: '紅茶 (冷/熱)', price: 25, desc: '古早味香醇紅茶' },
+            { id: 'dr2', category: '飲品系列', name: '奶茶 (冷/熱)', price: 35, desc: '香濃經典奶茶' },
+            { id: 'dr3', category: '飲品系列', name: '鮮奶茶 (冷/熱)', price: 45, desc: '優質鮮奶特調' },
+            { id: 'dr4', category: '飲品系列', name: '無糖綠茶', price: 25, desc: '清爽解膩無糖綠茶' },
+            { id: 'dr5', category: '飲品系列', name: '豆漿 (有糖/無糖)', price: 30, desc: '濃郁健康豆漿' }
+        ];
+
+        let selectedCategory = '全部';
+        let cart = {};
+
+        const categories = ['全部', '蛋餅系列', '吐司系列', '漢堡系列', '鐵板麵系列', '總匯系列', '果醬/厚片/乳酪餅', '點心與單點', '飲品系列'];
+
+        window.onload = function() {
+            renderCategoryTabs();
+            renderMenuItems();
+            checkStoreStatus();
+        };
+
+        function checkStoreStatus() {
+            const now = new Date();
+            const day = now.getDay();
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            const timeVal = hour * 100 + minute;
+
+            const badge = document.getElementById('store-status-badge');
+
+            if (day === 0) {
+                badge.innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-red-500"></span><span class="text-red-600 font-bold">今日週日固定公休</span>`;
+                return;
+            }
+
+            const openTime = (day === 6) ? 700 : 600;
+            const closeTime = 1300;
+
+            if (timeVal >= openTime && timeVal < closeTime) {
+                badge.innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-brand-sage animate-pulse"></span><span class="text-brand-sage font-bold">門市營業中 ‧ 歡迎撥號點餐</span>`;
+            } else {
+                badge.innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-brand-orange"></span><span class="text-brand-brown font-bold">非營業時間 (備料休店中)</span>`;
+            }
+        }
+
+        function renderCategoryTabs() {
+            const container = document.getElementById('category-tabs');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="selectCategory('${cat}')" class="px-4 py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
+                    selectedCategory === cat 
+                    ? 'bg-brand-brown text-white shadow-sm' 
+                    : 'bg-brand-cream text-brand-coffee hover:bg-white border border-brand-light'
+                }">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function selectCategory(cat) {
+            selectedCategory = cat;
+            renderCategoryTabs();
+            renderMenuItems();
+        }
+
+        function filterMenuItems() {
+            renderMenuItems();
+        }
+
+        function renderMenuItems() {
+            const grid = document.getElementById('menu-grid');
+            const searchKeyword = document.getElementById('menu-search').value.toLowerCase().trim();
+
+            const filtered = menuData.filter(item => {
+                const matchesCat = (selectedCategory === '全部') || (item.category === selectedCategory);
+                const matchesSearch = item.name.toLowerCase().includes(searchKeyword) || item.desc.toLowerCase().includes(searchKeyword);
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-brand-coffee/60">
+                        <i class="fa-solid fa-magnifying-glass text-3xl mb-2 text-brand-yellow"></i>
+                        <p class="font-bold">找不到相符的美味餐點</p>
+                        <p class="text-xs text-brand-fog mt-1">請嘗試搜尋其他關鍵字</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => {
+                const count = cart[item.id] ? cart[item.id].qty : 0;
+                return `
+                    <div class="bg-white rounded-2xl p-5 border border-brand-light shadow-sm hover:shadow-warm transition-all flex flex-col justify-between group">
+                        <div class="space-y-2">
+                            <div class="flex items-start justify-between">
+                                <span class="text-xs font-bold text-brand-brown bg-brand-cream border border-brand-light px-2.5 py-0.5 rounded-full">${item.category}</span>
+                                <span class="text-lg font-black text-brand-orange">$${item.price}</span>
+                            </div>
+                            <h3 class="font-black text-brand-coffee text-base group-hover:text-brand-brown transition-colors">${item.name}</h3>
+                            <p class="text-xs text-brand-coffee/70 leading-relaxed font-medium">${item.desc}</p>
+                        </div>
+
+                        <div class="pt-4 mt-4 border-t border-brand-light flex items-center justify-between">
+                            ${count > 0 ? `
+                                <div class="flex items-center gap-3 bg-brand-cream px-3 py-1 rounded-full border border-brand-light">
+                                    <button onclick="updateCart('${item.id}', -1)" class="w-6 h-6 rounded-full bg-white text-brand-coffee font-bold hover:bg-brand-yellow/60 shadow-sm">-</button>
+                                    <span class="font-black text-sm text-brand-brown">${count}</span>
+                                    <button onclick="updateCart('${item.id}', 1)" class="w-6 h-6 rounded-full bg-brand-orange text-white font-bold hover:bg-brand-brown shadow-sm">+</button>
+                                </div>
+                            ` : `
+                                <button onclick="updateCart('${item.id}', 1)" class="w-full py-2 bg-brand-cream hover:bg-brand-orange text-brand-coffee hover:text-white font-bold text-xs rounded-full border border-brand-light hover:border-brand-orange transition-all flex items-center justify-center gap-1.5 shadow-sm">
+                                    <i class="fa-solid fa-plus text-brand-brown"></i> 加入試算清單
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateCart(id, change) {
+            const item = menuData.find(m => m.id === id);
+            if (!item) return;
+
+            if (!cart[id]) {
+                cart[id] = { ...item, qty: 0 };
+            }
+
+            cart[id].qty += change;
+
+            if (cart[id].qty <= 0) {
+                delete cart[id];
+            }
+
+            updateCartUI();
+            renderMenuItems();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+
+            const totalQty = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
+            const totalAmount = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            if (totalQty > 0) {
+                badge.innerText = totalQty;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+
+            subtotalEl.innerText = `$${totalAmount}`;
+            totalEl.innerText = `$${totalAmount}`;
+
+            if (Object.keys(cart).length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="text-center py-12 text-brand-coffee/50 space-y-2">
+                        <i class="fa-solid fa-basket-shopping text-4xl text-brand-yellow"></i>
+                        <p class="font-bold text-brand-coffee text-sm">試算清單是空的</p>
+                        <p class="text-xs">請點擊菜單餐點進行試算與組合</p>
+                    </div>
+                `;
+                return;
+            }
+
+            cartItemsContainer.innerHTML = Object.values(cart).map(item => `
+                <div class="flex items-center justify-between py-2">
+                    <div>
+                        <h4 class="font-bold text-sm text-brand-coffee">${item.name}</h4>
+                        <span class="text-xs text-brand-orange font-bold">$${item.price} × ${item.qty}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="updateCart('${item.id}', -1)" class="w-6 h-6 rounded-full bg-brand-cream text-brand-coffee text-xs font-bold hover:bg-brand-yellow/60 border border-brand-light">-</button>
+                        <span class="text-xs font-bold text-brand-coffee">${item.qty}</span>
+                        <button onclick="updateCart('${item.id}', 1)" class="w-6 h-6 rounded-full bg-brand-orange text-white text-xs font-bold hover:bg-brand-brown">+</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleCartModal() {
+            const modal = document.getElementById('cart-modal');
+            const drawer = document.getElementById('cart-drawer');
+
+            if (modal.classList.contains('pointer-events-none')) {
+                modal.classList.remove('pointer-events-none', 'opacity-0');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        function copyCartSummary() {
+            if (Object.keys(cart).length === 0) {
+                showToast('您的試算清單為空，請先選擇餐點！', 'error');
+                return;
+            }
+
+            let text = "【坡坡饗早午餐屋 (BRAAPs Brunch) 點餐明細】\n";
+            let total = 0;
+            Object.values(cart).forEach(item => {
+                text += `‧ ${item.name} x ${item.qty} = $${item.price * item.qty}\n`;
+                total += item.price * item.qty;
+            });
+            text += `---------------------\n預計總金額：$${total}\n`;
+            text += `門市地址：新北市淡水區鄧公路23號\n訂餐專線：0976-902-980`;
+
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            showToast('已複製菜單明細至剪貼簿！');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+
+            if (menu.classList.contains('hidden')) {
+                icon.className = 'fa-solid fa-bars text-xl';
+            } else {
+                icon.className = 'fa-solid fa-xmark text-xl';
+            }
+        }
+
+        function showToast(msg, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.innerText = msg;
+            if (type === 'error') {
+                toastIcon.className = 'fa-solid fa-circle-exclamation text-red-400 text-xl';
+            } else {
+                toastIcon.className = 'fa-solid fa-circle-check text-brand-yellow text-xl';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
